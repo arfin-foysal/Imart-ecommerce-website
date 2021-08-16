@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import { ContextData } from '../Context/GlobalData'
 
 const Cart = () => {
-    const context = useContext(ContextData)
+    const {state:{cart},dispatch}= useContext(ContextData)
     return (
-        <div>
+        <div className="home">
             dcs
         </div>
     )
