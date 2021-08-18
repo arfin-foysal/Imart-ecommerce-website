@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 import faker from "faker";
-import AppReducer from './AppReducer';
+import  { AppReducer,productReducer } from './AppReducer';
 export const ContextData = React.createContext()
 faker.seed(99)
 const products = [...Array(20)].map(() => ({
@@ -16,18 +16,26 @@ const initialState={
     products:products,
     cart:[]
 }
+
 const GlobalData = ({children}) => {
     const [state, dispatch] = useReducer(AppReducer, initialState)
    
-
+    const [productState, productDispatch] = useReducer(productReducer, {
+        byStock:false,
+        byFastDelivery:false,
+        byRating:0,
+        searchQuery:"",
+    })
+ 
     return (
-        <ContextData.Provider value={{state, dispatch}}>
+        <ContextData.Provider value={{state, dispatch ,productState,productDispatch}}>
            {children}
         </ContextData.Provider>
         
     )
 }
 
-export default GlobalData
+export default GlobalData;
+
 
 

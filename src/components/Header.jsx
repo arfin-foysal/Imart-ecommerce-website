@@ -10,7 +10,7 @@ import {} from 'react-icons'
 // import { FaShoppingCart } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 const Header = () => {
-    const {state:{cart},dispatch} = useContext(ContextData)
+    const {state:{cart},dispatch,productDispatch} = useContext(ContextData)
     return (
         <div>
            <Navbar bg="dark"  variant="dark" style={{ height:80}}>
@@ -20,7 +20,17 @@ const Header = () => {
                    </Navbar.Brand>
                    <Navbar.Text className="search">
                        <FormControl style={{ width:500}} placeholder="Search a Product"
-                       className="m-auto"/>
+                       className="m-auto"
+                        onChange={
+                          (e)=>{
+                            productDispatch({
+                              type:"FILTER_BY_SEARCH",
+                              payload:e.target.value,
+                            })
+                          }
+                        }
+                       
+                       />
                    </Navbar.Text>
                    <Nav>
                        
